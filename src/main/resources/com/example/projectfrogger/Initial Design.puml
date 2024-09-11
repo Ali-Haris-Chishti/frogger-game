@@ -1,0 +1,100 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Main <|-- MyStage
+World <|-- MyStage
+Pane <|-- World
+Actor  x-- Animal
+Actor  x-- Log
+Actor  x-- Turtle
+Actor  x-- WetTurtle
+Actor  x-- End
+Actor  x-- Obstacle
+Actor  x-- Digit
+Actor  x-- BackgroundImage
+Actor <|-- Main
+ImageView <|-- Actor
+abstract class Actor
+abstract class World{
+ - timer: AnimationTimer
+
+ + World()
+ + createTimer(): void
+ + start(): void
+ + stop(): void
+ + add(actor: Actor): void
+ + remove(actor: Actor): void
+ + getObjects(cls: Class<A>): List<A>
+ + act(now: long): void     // Abstract method
+}
+
+
+class Main {
+-timer: AnimationTimer
+-background: MyStage
+-animal: Animal
+ + main(args: String[]): void
+ + start(primaryStage: Stage): void
+ + createTimer(): void
+ + start(): void
+ + stop(): void
+ + setNumber(n: int): void
+}
+class MyStage {
+ - mediaPlayer: MediaPlayer
++ MyStage()
++ playMusic(): void
++ stopMusic(): void
++ act(now: long): void  // Overridden method
+}
+class Animal {
+ -imgW1
+ -imgA1
+ -imgS1
+ -imgD1
+ -points
+ -end
+ -second
+ -noMove
+ -movement
+ -movementX
+ -imgSize
+ -carDeath
+ -waterDeath
+ -stop
+ -changeScore
+ -carD
+ -w
+ -inter
++Animal()
+ +act(now)
+ +getStop()
+ +getPoints()
+ +changeScore()
+}
+class Log {
+ - speed: double
+ + Log(imageLink: String, size:
+        int, xpos: int, ypos: int,
+        s: double)
+ + act(now: long): void
++ getLeft(): boolean
+}
+class Turtle {
+
+}
+class WetTurtle {
+
+}
+class End {
+
+}
+class Obstacle {
+
+}
+
+
+
+
+
+@enduml
